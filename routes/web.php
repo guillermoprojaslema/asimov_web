@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('appointments', 'AppointmentsController@index')->name('appointments.index');
+Route::get('appointments/create', 'AppointmentsController@create')->name('appointments.create');
+Route::post('appointments', 'AppointmentsController@store')->name('appointments.store');
+Route::get('appointments/{appointment}', 'AppointmentsController@show')->name('appointments.show');
+Route::get('appointments/{appointment}/edit', 'AppointmentsController@edit')->name('appointments.edit');
+Route::put('appointments/{appointment}', 'AppointmentsController@update')->name('appointments.update');
