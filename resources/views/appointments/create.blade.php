@@ -11,7 +11,7 @@
 
 
     <h4>Who's going to book it?</h4>
-    <form method="post" action="{{route('appointments.store')}}">
+    <form method="POST" action="{{route('appointments.store')}}">
         {!! csrf_field() !!}
         <div class="form-group  {{ $errors->has('name') ? 'has-error' : ''}}">
             <label for="name">Name:</label>
@@ -31,7 +31,7 @@
 
         <div class="form-group  {{ $errors->has('start') ? 'has-error' : ''}}">
             <label for="start">Start:</label>
-            <input type="text" class="form-control" id="start" name="start" disabled
+            <input type="text" class="form-control" id="start" name="start"
                    value="{{$appointment->subHour()->format('Y-m-d H:i:s')}}">
             {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
         </div>
