@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 
+Route::get('/', 'AppointmentsController@index')->name('appointments.index');
 Route::get('appointments', 'AppointmentsController@index')->name('appointments.index');
 Route::get('appointments/create/{appointment}', 'AppointmentsController@create')->name('appointments.create');
 Route::post('appointments', 'AppointmentsController@store')->name('appointments.store');
