@@ -3,8 +3,13 @@
 @section('title', 'Dance with The Death')
 
 @section('content')
+
+    @include('partials.instructions')
+
+    @include('partials.lyrics')
+
     @if($appointment['user_id'])
-        <h2>Sorry, this appointmet has already been taken by {{$appointment['name'].' '.$appointment['last_name'] }}</h2>
+        <h2>Sorry, this appointment has already been taken by {{$appointment['name'].' '.$appointment['last_name'] }}</h2>
         <a class="btn btn-warning" href="{{route('appointments.edit', $appointment['id'])}}">I want to edit</a>
     @else
         <h2>On {{\Carbon\Carbon::parse($appointment['start'])->format('d-M-Y')}}, The Death is available to dance
@@ -19,6 +24,7 @@
 
     <a class="btn btn-info" href="{{route('appointments.index')}}">No thanks. Just take me back</a>
 
+    <br><br>
     <form action="{{ url('appointments' , $appointment['id']) }}" method="POST">
         {{ csrf_field() }}
         {{ method_field('DELETE') }}

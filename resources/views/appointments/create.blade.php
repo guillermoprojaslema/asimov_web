@@ -4,10 +4,14 @@
 
 @section('content')
 
+    @include('partials.instructions')
+
+    @include('partials.lyrics')
+
+
     <h2>Your appointment will be from: <br>
         {{$appointment->format('d-M-Y')}} at {{$appointment->format('H:i:s')}}</h2>
     <h2> to {{$appointment->addHour()->format('d-M-Y')}} at {{$appointment->format('H:i:s')}}</h2>
-
 
 
     <h4>Who's going to book it?</h4>

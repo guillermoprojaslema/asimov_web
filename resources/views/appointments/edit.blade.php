@@ -4,6 +4,10 @@
 
 @section('content')
 
+    @include('partials.instructions')
+
+    @include('partials.lyrics')
+
 
     <h4>Who's going to book it?</h4>
     <form method="POST" action="{{action('AppointmentsController@update', [$appointment['id']])}}">

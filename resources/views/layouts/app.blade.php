@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}"/>
+
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -41,6 +43,8 @@
         </div>
     </div>
 </div>
+
+@include('partials.footer')
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
