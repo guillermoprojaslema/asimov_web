@@ -35,7 +35,7 @@
         <div class="form-group  {{ $errors->has('start') ? 'has-error' : ''}}">
             <label for="start">Start:</label>
             <input type="text" class="form-control" id="start" name="start"
-                   value="{{\Carbon\Carbon::parse($appointment['start'])->format('m/d/Y g:i A')}}">
+                   value="{{\Carbon\Carbon::parse($appointment)->format('m/d/Y g:i A')}}">
             {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
         </div>
 
