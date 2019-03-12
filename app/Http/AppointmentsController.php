@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Session;
 
 
 class AppointmentsController extends Controller
@@ -43,7 +44,7 @@ class AppointmentsController extends Controller
     public function store(Request $request)
     {
         $client = new Client([
-            'base_uri' => 'http://localhost:8080/api/',
+            'base_uri' => $this->base_uri,
             'timeout' => 2.0
         ]);
 
@@ -59,10 +60,12 @@ class AppointmentsController extends Controller
         $response = $client->request('POST', "appointments", $options);
 
 
-        if (($response->getStatusCode() == 200)) {
+        if (($response->getStatusCode() == 201)) {
             $data['calendar'] = $this->getCalendar();
+            Session::flash('flash_message_ok', 'Record successfully created');
             return view('appointments.index', $data);
         } else {
+            Session::flash('flash_message_error', 'Record unsuccessfully created');
             return redirect()->back();
         }
 
@@ -88,7 +91,6 @@ class AppointmentsController extends Controller
         $appointment = $response->getBody()->getContents();
         $data['appointment'] = json_decode($appointment, TRUE);
 
-
         return view('appointments.show', $data);
 
     }
@@ -113,10 +115,13 @@ class AppointmentsController extends Controller
 
     public function update(AppointmentRequest $request, $id)
     {
+
+
         $client = new Client([
             'base_uri' => 'http://localhost:8080/api/',
             'timeout' => 2.0
         ]);
+
 
         $options = [
             'form_params' => [
@@ -124,16 +129,19 @@ class AppointmentsController extends Controller
                 "last_name" => $request->last_name,
                 "email" => $request->email,
                 "start" => $request->start,
+                'appointment_id' => $id
             ]
         ];
 
-        $response = $client->request('PUT', "appointments", $options);
+        $response = $client->request('POST', "appointments", $options);
 
 
-        if (($response->getStatusCode() == 200)) {
+        if ($response->getStatusCode() == 201) {
             $data['calendar'] = $this->getCalendar();
+            Session::flash('flash_message_ok', 'Record successfully updated');
             return view('appointments.index', $data);
         } else {
+            Session::flash('flash_message_error', 'Record unsuccessfully updated');
             return redirect()->back();
         }
     }
@@ -146,27 +154,21 @@ class AppointmentsController extends Controller
      */
     public function destroy($id)
     {
-        $appointment = Appointment::findOrFail($id);
-        $appointment->delete();
-
 
         $client = new Client([
-            'base_uri' => 'http://localhost:8080/api/',
+            'base_uri' => $this->base_uri,
             'timeout' => 2.0
         ]);
 
-        $options = [
-            'form_params' => [
-                "id" => $id,
-            ]
-        ];
 
-        $response = $client->delete("appointments", $options);
+        $response = $client->delete($this->base_uri . 'appointments/' . $id);
 
         if (($response->getStatusCode() == 204)) {
             $data['calendar'] = $this->getCalendar();
+            Session::flash('flash_message_ok', 'Record successfully deleted');
             return view('appointments.index', $data);
         } else {
+            Session::flash('flash_message_error', 'Record unsuccessfully updated');
             return redirect()->back();
         }
 

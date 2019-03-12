@@ -3,6 +3,9 @@
 @section('title', 'Dance with the Death')
 
 @section('content')
+
+    @include('partials.flash-message')
+
     @if($calendar)
         {!! $calendar->calendar() !!}
         {!! $calendar->script() !!}

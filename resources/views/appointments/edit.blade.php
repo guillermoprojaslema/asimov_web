@@ -6,7 +6,8 @@
 
 
     <h4>Who's going to book it?</h4>
-    <form method="PUT" action="{{route('appointments.update', $appointment['id'])}}">
+    <form method="POST" action="{{action('AppointmentsController@update', [$appointment['id']])}}">
+        {{ method_field('PATCH') }}
         {!! csrf_field() !!}
         <div class="form-group  {{ $errors->has('name') ? 'has-error' : ''}}">
             <label for="name">Name:</label>
