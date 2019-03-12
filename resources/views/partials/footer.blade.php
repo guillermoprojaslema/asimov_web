@@ -6,7 +6,7 @@
                 <div class="py-4 col-md-4">
                     <div class="media">
                         <div class="media-body">
-                            <p class="txt-footer">Sitio creado por:
+                            <p class="txt-footer">By:
                                 <strong>Guillermo Rojas</strong>
                             </p>
                         </div>
