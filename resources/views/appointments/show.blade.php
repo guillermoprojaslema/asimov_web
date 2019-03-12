@@ -6,7 +6,10 @@
 
     @include('partials.instructions')
 
-    @include('partials.lyrics')
+    <ol class="breadcrumb">
+        <li><a href="{{route('appointments.index')}}">Appointments</a></li>
+        <li class="active">Details</li>
+    </ol>
 
     @if($appointment['user_id'])
         <h2>Sorry, this appointment has already been taken by {{$appointment['name'].' '.$appointment['last_name'] }}</h2>
@@ -30,6 +33,8 @@
         {{ method_field('DELETE') }}
         <button class="btn btn-danger">Delete this Appointment</button>
     </form>
+
+    @include('partials.lyrics')
 
 
 
