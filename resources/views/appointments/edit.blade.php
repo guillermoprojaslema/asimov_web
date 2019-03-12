@@ -33,7 +33,7 @@
         <div class="form-group  {{ $errors->has('start') ? 'has-error' : ''}}">
             <label for="start">Start:</label>
             <input type="text" class="form-control" id="start" name="start"
-                   value="{{\Carbon\Carbon::parse($appointment['start'])->format('Y-m-d H:i:s')}}">
+                   value="{{\Carbon\Carbon::parse($appointment['start'])->format('m/d/Y g:i A')}}">
             {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
         </div>
 
@@ -41,4 +41,10 @@
 
     </form>
 
+
+    <script type="text/javascript">
+        $(function () {
+            $('#start').datetimepicker();
+        });
+    </script>
 @endsection
