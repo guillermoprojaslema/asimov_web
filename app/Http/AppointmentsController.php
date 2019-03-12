@@ -20,7 +20,9 @@ class AppointmentsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $base_uri = 'http://localhost:8080/api/';
+//    private $base_uri = 'http://localhost:8080/api/';
+    private $base_uri = 'https://asimov-api.herokuapp.com/api/';
+
 
     public function index()
     {
@@ -45,7 +47,7 @@ class AppointmentsController extends Controller
     {
         $client = new Client([
             'base_uri' => $this->base_uri,
-            'timeout' => 2.0
+            'timeout' => 10.0
         ]);
 
         $options = [
@@ -118,7 +120,7 @@ class AppointmentsController extends Controller
 
 
         $client = new Client([
-            'base_uri' => 'http://localhost:8080/api/',
+            'base_uri' => $this->base_uri,
             'timeout' => 2.0
         ]);
 
@@ -203,7 +205,7 @@ class AppointmentsController extends Controller
                 );
             } else {
                 $events[] = \Calendar::event(
-                    "The Death is availble ", //event title
+                    "The Death is available ", //event title
                     false, //full day event?
                     $appointment['start'], //start time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg)
                     $appointment['end'], //end time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg),
