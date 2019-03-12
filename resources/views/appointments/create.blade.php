@@ -32,16 +32,22 @@
             <input type="email" class="form-control" id="email" name="email">
             {!! $errors->first('email', '<p class="help-block">:message</p>') !!}
         </div>
-
         <div class="form-group  {{ $errors->has('start') ? 'has-error' : ''}}">
             <label for="start">Start:</label>
             <input type="text" class="form-control" id="start" name="start"
-                   value="{{$appointment->subHour()->format('Y-m-d H:i:s')}}">
+                   value="{{\Carbon\Carbon::parse($appointment['start'])->format('m/d/Y g:i A')}}">
             {!! $errors->first('start', '<p class="help-block">:message</p>') !!}
         </div>
 
         <input type="submit" class="btn btn-info" value="Book it">
 
     </form>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#start').datetimepicker();
+        });
+    </script>
 
 @endsection

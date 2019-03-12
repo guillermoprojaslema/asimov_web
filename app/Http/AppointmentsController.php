@@ -45,21 +45,25 @@ class AppointmentsController extends Controller
 
     public function store(Request $request)
     {
+
         $client = new Client([
             'base_uri' => $this->base_uri,
             'timeout' => 10.0
         ]);
+
+
 
         $options = [
             'form_params' => [
                 "name" => $request->name,
                 "last_name" => $request->last_name,
                 "email" => $request->email,
-                "start" => $request->start,
+                "start" => Carbon::parse($request->start)->format('Y-m-d H:i:s'),
             ]
         ];
 
         $response = $client->request('POST', "appointments", $options);
+
 
 
         if (($response->getStatusCode() == 201)) {
@@ -118,7 +122,6 @@ class AppointmentsController extends Controller
     public function update(AppointmentRequest $request, $id)
     {
 
-
         $client = new Client([
             'base_uri' => $this->base_uri,
             'timeout' => 2.0
@@ -130,7 +133,7 @@ class AppointmentsController extends Controller
                 "name" => $request->name,
                 "last_name" => $request->last_name,
                 "email" => $request->email,
-                "start" => $request->start,
+                "start" => Carbon::parse($request->start)->format('Y-m-d H:i:s'),
                 'appointment_id' => $id
             ]
         ];
