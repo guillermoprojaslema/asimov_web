@@ -8,7 +8,6 @@
 
     @include('partials.instructions')
 
-    @include('partials.lyrics')
 
 
 
@@ -19,6 +18,9 @@
     @else
         <h3>There isn't any appointments yet</h3>
     @endif
+
+    <br>
+    @include('partials.lyrics')
 
 
 @endsection

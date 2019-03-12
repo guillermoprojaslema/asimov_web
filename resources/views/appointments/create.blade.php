@@ -4,10 +4,14 @@
 
 @section('content')
 
+
+
     @include('partials.instructions')
 
-    @include('partials.lyrics')
-
+    <ol class="breadcrumb">
+        <li><a href="{{route('appointments.index')}}">Appointments</a></li>
+        <li class="active">Edit</li>
+    </ol>
 
     <h2>Your appointment will be from: <br>
         {{$appointment->format('d-M-Y')}} at {{$appointment->format('H:i:s')}}</h2>
@@ -42,6 +46,9 @@
         <input type="submit" class="btn btn-info" value="Book it">
 
     </form>
+
+    @include('partials.lyrics')
+
 
 
     <script type="text/javascript">
